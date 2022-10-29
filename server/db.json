@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "task": "Go to the gym",
+        "priority": 1
+    },
+    {
+        "id": 2,
+        "task": "Go to class",
+        "priority": 4
+    },
+    {
+        "id": 3,
+        "task": "Get Icecream",
+        "priority": 5
+    }
+]

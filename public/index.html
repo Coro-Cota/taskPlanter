@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planter</title>
+    <link rel="stylesheet" href="/css">
+    <link href="http://fonts.cdnfonts.com/css/bellota-2" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/beth-ellen" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Task Planter</h1>
+    </header>
+    <aside>
+        <a href="#"><img src="Images/cactus/cactus_20.png"></a>
+        <p></p>
+    </aside>
+    <nav>
+        <ul id="ulNav" class="">
+            <li><a href="#">Tasks</a></li>
+            <li><a href="#">Plant Growth</a></li>
+            <li><a href="#">Botanical Garden</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <form class="form-inline">
+            <input type="text" id="task-input" placeholder="What Task will you Plant?"/>
+            <button>plant task</button>
+            <section id="priority-container">
+                    <div id="radio-container">
+                        <p class="priority">Priority:</p>
+                        <label for="one">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="1"
+                                id="one"/>
+                            1
+                        </label>
+                        <label for="two">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="2"
+                                id="two"/>
+                            2
+                        </label>
+                        <label for="three">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="3"
+                                id="three"/>
+                            3
+                        </label>
+                        <label for="four">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="4"
+                                id="four"/>
+                            4
+                        </label>
+                        <label for="five">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="5"
+                                id="five"/>
+                            5
+                        </label>
+                    </div>
+            </section>
+
+        </form>
+
+    <section id="task-container"></section>
+
+    </main>
+
+    <footer>Task Planter by Nicolas Garaycochea</footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js"></script>
+    
+</body>
+</html>
