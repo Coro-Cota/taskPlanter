@@ -3,18 +3,9 @@ body {
     grid: auto-flow min-content / 1fr;
     grid-template-rows: auto 100px auto 100px;
     grid-template-areas: "header"
-                         "aside "
                          "nav   "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
-                         "main  "
+                         "aside "
+                         "aside "
                          "main  "
                          "main  "
                          "main  "
@@ -53,6 +44,29 @@ body {
                              "aside  main  "
                              "footer footer";
     }
+}
+
+
+@media screen and (min-width: 2550px) {
+    body {
+        grid: auto-flow min-content / 1fr 2fr;
+        grid-auto-rows: minmax(auto,auto);
+        grid-template-areas: "header header"
+                             "nav   nav"
+                             "aside  main  "
+                             "aside  main  "
+                             "footer footer";
+    }
+    nav ul li a{
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.25em;
+        width: 90%;
+        padding:10px;
+        color: white;
+        background: #28635A;
+    }
+
 }
 
 header { grid-area: header; }
@@ -226,19 +240,7 @@ main {
 }
 /* priority rating section end */
 
-@media (max-width: 800px) {
-    /* task input section for responsive */
-    .form-inline input {
-        width: 100%;
-        margin: 10px 0;
-    }
-        
-    .form-inline {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    /* task input section for responsive end*/
-}
+
 
 /* task list section */
 
@@ -305,4 +307,31 @@ main {
     border-radius: 0.5em;
     background-color: #8EBAA8;
     margin-top: 7px;
+}
+
+@media (max-width: 800px) {
+    /* task input section for responsive */
+    .form-inline input {
+        width: 100%;
+        margin: 10px 0;
+    }
+        
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    /* task input section for responsive end*/
+}
+
+@media screen and (min-width: 2550px) {
+    nav ul li a{
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.45em;
+        width: 90%;
+        padding:10px;
+        color: white;
+        background: #28635A;
+    }
+
 }
