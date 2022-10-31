@@ -22,68 +22,92 @@ const updateTask = (id, type) => {
     .then(tasksCallback)
     .catch(errCallback)
 }
+// to change priority from numbers to words, you create a dropdown of five strings in the front end and keep the backend integers. google dropdown and select tag and options, "select tag doc" should help me link the numbers to strings. nested elements that has options, each option has a value that can be asigned numbers. the user will see the words rather than the numbers
+
+const editTaskName = (e) => {
+    e.preventDefault()
+    const { editTaskData } = e.target;
+    axios.put(`${baseURL}`, editTaskData)
+    .then(tasksCallback)
+    .catch(errCallback)
+}
+
 function submitHandler(e) {
     e.preventDefault()
 
     let task = document.querySelector(`#task-input`)
-    let priority = document.querySelector(`input[name="priority"]:checked`)
 
     let bodyObj = {
         task: task.value,
-        priority: priority.value
+        priority: 1
     }
 
     createTask(bodyObj)
 
     task.value = ''
-    priority.checked = false
 }
 
 let createTaskLine = (theTask) => {
+    const { id, task, priority } = theTask;
+
     const taskLine = document.createElement('div')
     taskLine.classList.add('task-line')
     
     taskLine.innerHTML = `
+        <div id="taskLine-${id}">
             <div class="task-wrapper">
                 <p class="task-name">
-                    ${theTask.task}
+                    ${task}
                 </p>
-            <div class="btns-container">
-                <button id="minus" onclick="updateTask(${theTask.id}, 'minus')">-</button>
-                <p class="task-priority">
-                    ${theTask.priority} priority
-                </p>
-                <button id="plus" onclick="updateTask(${theTask.id}, 'plus')">+</button>
+                <div class="edit-task-wrapper">
+                    <form id="editTaskNameForm-${id}">
+                        <input class="inputValue" type="text" value="${task}"></input>
+                        <button class="update" type="submit">update</button>
+                    </form>
+                </div>
+                <button class="edit-task-name">edit</button>
+                <div class="btns-container">
+                    <button id="minus" onclick="updateTask(${id}, 'minus')">-</button>
+                        <p class="task-priority">
+                            ${priority} priority
+                        </p>
+                    <button id="plus" onclick="updateTask(${id}, 'plus')">+</button>
+                </div>
+                <button class="deleteTask" onclick="deleteTask(${id})">delete</button>
             </div>
-                <button class="deleteTask" onclick="deleteTask(${theTask.id})">delete</button>
-            </div>
-            <button class="edit" onclick="editTask(${task.id})">edit</button>
+        </div>
     `
-
-    // starting below is code that I need to enter to add an edit field in my task list, this is to be added above between the ``.
-    // <form onsubmit="editTask(event,${task.id})">
-    //     <input type="text" placeholder="Edit task" id="${task.id}">
-    //     <button>submit</button>
-    // </form> 
     taskContainer.appendChild(taskLine)
-}
 
-// const editTask = (evt,id) => {
-//     //out edit task function takes 2 params. the event object, and the id of the task we want to edit.
-//     evt.preventDefault() //we preventDefault so that the page doesn't refresh.
-//     let editedTaskList = document.getElementById(`${id}`)
-//     //using the id we stored inside the input field, and passed into the editTask function we select the desired input field
-//     let taskToEdit = {
-//         id,
-//         title: editedTaskList.value //then we store the input user data on an object to send to the backend.
-//     }
-//     console.log(taskToEdit);
-//     axios.put(baseURL, taskToEdit)//and send that object to the backend.
-//     .then(response => {
-//         tasksCallback(response)
-//     })
-//     .catch(err => console.log(err))
-// }
+    // i need to query for additional elements after they're added to the dom
+    const taskNameElement = document.querySelector(`#taskLine-${id} .task-name`);
+    const taskWrapperElement = document.querySelector(`#taskLine-${id} .task-wrapper`);
+    const editTaskBtn = document.querySelector(`#taskLine-${id} .edit-task-name`);
+    const editTaskWrapper = document.querySelector(`#taskLine-${id} .edit-task-wrapper`);
+    const editTaskNameForm = document.querySelector(`#editTaskNameForm-${id}`);
+    const editTaskNameFormInput = document.querySelector(`#editTaskNameForm-${id} input`);
+
+    // when the .task-name is clicked -> toggle visibility for the .task-wrapper and .edit-task-form
+    editTaskBtn.addEventListener('click', () => {
+        console.log('hit');
+        taskNameElement.style.display = 'none';
+        editTaskWrapper.style.display = 'block';
+        editTaskBtn.style.display = 'none';
+    })
+
+    // this creates an object on the e.target passed with the dom eventListener -> we can access it via e.target.editTaskData in the invoked function
+
+    // inline submit function to toggle visibility and call editTaskName() on submit
+    editTaskNameForm.addEventListener('submit', (e) => {
+        taskWrapperElement.style.display = 'flex';
+        editTaskWrapper.style.display = 'none';
+        editTaskNameForm.editTaskData = {
+            id: id,
+            task: editTaskNameFormInput.value
+        };
+        editTaskName(e)
+    });
+}
 
 let displayTasks = (arr) => {
     taskContainer.innerHTML = ``

@@ -213,30 +213,6 @@ main {
     font-size: 30px;
 }
 
-/* priority rating section start */
-#priority-container {
-    text-align: center;
-    margin: auto;
-    display: block;
-    margin: auto;
-}
-
-#radio-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.priority{
-    justify-content: space-around;
-    flex-direction: column;
-    width: 100px;
-    font-size: 25px;
-}
-/* priority rating section end */
-
-
-
 /* task list section */
 
 .task-wrapper {
@@ -253,12 +229,31 @@ main {
     border-radius: 0.5em;
 }
 
-.edit {
+.edit-task-wrapper {
+    display:none;
+}
+
+.inputValue{
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    width: 70%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5em;
+}
+
+.update{
     border-radius: 0.5em;
     background-color: #8EBAA8;
     margin-top: 7px;
 }
 
+.edit-task-name {
+    border-radius: 0.5em;
+    background-color: #8EBAA8;
+    margin-top: 7px;
+}
 
 .task-priority {
     padding: 5px 10px;
