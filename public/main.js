@@ -22,7 +22,6 @@ const updateTask = (id, type) => {
     .then(tasksCallback)
     .catch(errCallback)
 }
-
 function submitHandler(e) {
     e.preventDefault()
 
@@ -45,22 +44,46 @@ let createTaskLine = (theTask) => {
     taskLine.classList.add('task-line')
     
     taskLine.innerHTML = `
-    <div class="task-wrapper">
-    <p class="task-name">
-    ${theTask.task}
-    </p>
-    <div class="btns-container">
-        <button id="minus" onclick="updateTask(${theTask.id}, 'minus')">-</button>
-        <p class="task-priority">
-        ${theTask.priority} priority
-        </p>
-        <button id="plus" onclick="updateTask(${theTask.id}, 'plus')">+</button>
-    </div>
-    <button class="deleteTask" onclick="deleteTask(${theTask.id})">delete</button>
-    </div>
+            <div class="task-wrapper">
+                <p class="task-name">
+                    ${theTask.task}
+                </p>
+            <div class="btns-container">
+                <button id="minus" onclick="updateTask(${theTask.id}, 'minus')">-</button>
+                <p class="task-priority">
+                    ${theTask.priority} priority
+                </p>
+                <button id="plus" onclick="updateTask(${theTask.id}, 'plus')">+</button>
+            </div>
+                <button class="deleteTask" onclick="deleteTask(${theTask.id})">delete</button>
+            </div>
+            <button class="edit" onclick="editTask(${task.id})">edit</button>
     `
+
+    // starting below is code that I need to enter to add an edit field in my task list, this is to be added above between the ``.
+    // <form onsubmit="editTask(event,${task.id})">
+    //     <input type="text" placeholder="Edit task" id="${task.id}">
+    //     <button>submit</button>
+    // </form> 
     taskContainer.appendChild(taskLine)
 }
+
+// const editTask = (evt,id) => {
+//     //out edit task function takes 2 params. the event object, and the id of the task we want to edit.
+//     evt.preventDefault() //we preventDefault so that the page doesn't refresh.
+//     let editedTaskList = document.getElementById(`${id}`)
+//     //using the id we stored inside the input field, and passed into the editTask function we select the desired input field
+//     let taskToEdit = {
+//         id,
+//         title: editedTaskList.value //then we store the input user data on an object to send to the backend.
+//     }
+//     console.log(taskToEdit);
+//     axios.put(baseURL, taskToEdit)//and send that object to the backend.
+//     .then(response => {
+//         tasksCallback(response)
+//     })
+//     .catch(err => console.log(err))
+// }
 
 let displayTasks = (arr) => {
     taskContainer.innerHTML = ``
