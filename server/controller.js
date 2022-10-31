@@ -52,7 +52,14 @@ module.exports = {
         }else {
             res.sendStatus(400)
         }
-    }
+    },    
+    // editTask: (req,res) => {
+    //     console.log('hit')
+    //     let { id, title } = req.body //we destructure the obj we sent to the backend
+    //     let index = tasks.findIndex(task => +task.id === +id) //find the task we want to edit in our task array
+    //     tasks[index].title = title //and edit the title based on the user input from the frontend
+    //     res.status(200).send(tasks) //then we send our edited task array back to the front, end and display the new task list.
+    // }
 }
 
 console.log(module);

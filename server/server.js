@@ -11,6 +11,7 @@ const {
     deleteTask,
     createTask,
     updateTask,
+    // editTask,
     getHTML,
     getCSS,
     getJS
@@ -24,5 +25,6 @@ app.get(`/api/task`, getTasks)
 app.delete(`/api/task/:id`, deleteTask)
 app.post(`/api/task`, createTask)
 app.put(`/api/task/:id`, updateTask)
+// app.put(`/api/task/:id`, editTask)
 
 app.listen(4000, console.log('server running on 4000'))
